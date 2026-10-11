@@ -28,6 +28,7 @@ def music_root(tmp_path: Path) -> Path:
     * ``band/riff.gp5``         — allowed legacy-format file
     * ``band/old.gp3``          — allowed GP3 legacy file
     * ``band/older.gp4``        — allowed GP4 legacy file
+    * ``band/six.gpx``          — allowed Guitar Pro 6 file
     * ``band/notes.txt``        — disallowed extension, must never be listed/served
     * ``.hidden.gp``            — hidden file, must never be listed
     * ``.hiddendir/``           — hidden folder, must never be listed
@@ -46,6 +47,7 @@ def music_root(tmp_path: Path) -> Path:
     (tmp_path / "band" / "riff.gp5").write_bytes(b"GP5-RIFF")
     (tmp_path / "band" / "old.gp3").write_bytes(b"GP3-OLD")
     (tmp_path / "band" / "older.gp4").write_bytes(b"GP4-OLDER")
+    (tmp_path / "band" / "six.gpx").write_bytes(b"GPX-SIX")
     (tmp_path / "band" / "notes.txt").write_text("not a tab")
     (tmp_path / ".hidden.gp").write_bytes(b"secret")
     (tmp_path / "README.md").write_text("docs")

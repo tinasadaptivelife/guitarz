@@ -58,7 +58,7 @@ hardware or drivers needed.
 - **Click-to-seek & loop** — click a beat in the score to jump there; drag-select a
   bar range and hit `loop` to practice a section
 - **File explorer** — browses a configurable root folder (subfolders included) for
-  `.gp` (Guitar Pro 7/8), `.gp5`, `.gp4`, and `.gp3` files
+  `.gp` (Guitar Pro 7/8), `.gpx` (Guitar Pro 6), `.gp5`, `.gp4`, and `.gp3` files
 - **Deep links** — `/?open=<relative path>` auto-loads a song
 
 ## Setup
@@ -153,8 +153,8 @@ that is what the Guitar Pro app associates with.
 
 ## Notes
 
-- Supported extensions are the `EXTENSIONS` constant in `guitarz/server.py`; alphaTab
-  also reads `.gp3`/`.gp4`/`.gpx`, so adding them there is all it takes.
+- Supported extensions are the `EXTENSIONS` constant in `guitarz/server.py`:
+  `.gp`, `.gp3`, `.gp4`, `.gp5` and `.gpx` (Guitar Pro 6), all read by alphaTab.
 - The backend only ever serves files inside `--root` (path-traversal guarded).
 - `samples/gp5-format-test.gp5` is a generated fixture used to verify legacy-format
   loading.

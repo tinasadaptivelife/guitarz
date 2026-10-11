@@ -17,10 +17,10 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-#: File extensions exposed by the API — every generation alphaTab can parse.
-#: (.gpx/GP6 is deliberately absent: untested and none in the collection.)
+#: File extensions exposed by the API — every generation alphaTab can parse,
+#: including .gpx (Guitar Pro 6), which many free tab sites hand out.
 #: See tests/test_server.py for the filtering contract.
-EXTENSIONS = {".gp", ".gp3", ".gp4", ".gp5"}
+EXTENSIONS = {".gp", ".gp3", ".gp4", ".gp5", ".gpx"}
 
 #: Location of the frontend bundle. Resolved relative to this file so the app
 #: works from an editable install regardless of the process's working

@@ -32,7 +32,7 @@ class TestBrowse:
     def test_subfolder_listing_filters_extensions_and_sorts(self, client):
         """A subfolder lists GP files of every generation, sorted, txt excluded.
 
-        The allowlist covers .gp/.gp3/.gp4/.gp5 — alphaTab reads all of them,
+        The allowlist covers .gp/.gp3/.gp4/.gp5/.gpx — alphaTab reads all of them,
         and collections routinely mix eras. Sorting is part of the contract
         because the UI renders entries in the order the API returns them.
         """
@@ -44,12 +44,23 @@ class TestBrowse:
             "old.gp3",
             "older.gp4",
             "riff.gp5",
+            "six.gpx",
         ]
 
     def test_legacy_gp3_gp4_are_downloadable(self, client):
         """GP3 and GP4 files are served like any other allowed format."""
         assert client.get("/api/file", params={"path": "band/old.gp3"}).content == b"GP3-OLD"
         assert client.get("/api/file", params={"path": "band/older.gp4"}).content == b"GP4-OLDER"
+
+    def test_gpx_is_downloadable(self, client):
+        """Guitar Pro 6 (.gpx) files are served like any other allowed format.
+
+        Free tab sites hand out many .gpx files and alphaTab parses them, so
+        hiding them would leave downloaded songs invisible in the explorer.
+        """
+        res = client.get("/api/file", params={"path": "band/six.gpx"})
+        assert res.status_code == 200
+        assert res.content == b"GPX-SIX"
 
     def test_file_entries_report_relative_path_and_size(self, client):
         """File entries carry the root-relative POSIX path and byte size.
